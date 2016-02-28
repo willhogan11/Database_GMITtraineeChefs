@@ -33,9 +33,9 @@ CREATE TABLE RECIPE
 	NAME VARCHAR(30) NOT NULL, 
 	DESCRIPTION VARCHAR(255) NOT NULL, 
 	PREP_TIME INT NOT NULL, 
+	INGREDIENTS VARCHAR(255) NOT NULL, 
 	DIRECTIONS MEDIUMTEXT NOT NULL, 
 	IMAGE LONGBLOB, 
-	INGREDIENTS VARCHAR(255) NOT NULL, 
 	CHEF_ID INT UNSIGNED NOT NULL,
 	FOOD_TYPE_ID INT UNSIGNED NOT NULL,
 	FOOD_ORIGIN_ID INT UNSIGNED NOT NULL, 
@@ -58,6 +58,7 @@ CREATE TABLE INGREDIENTS
 );
 
 
+-- Junction Table to facilitate the many to many issue, between Recipe and Ingredients tables
 CREATE TABLE RECIPE_INGREDIENTS
 (
 	RECIPE_ID INT UNSIGNED NOT NULL, 
@@ -80,7 +81,7 @@ VALUES
 ("North African"),("South African"),("Central African"),("Middle Eastern"),("Asian"),
 ("Italian"),("Chinese"),("Cantonese"),("Japanese"),("Greek"),("Indonesian"),("Thai"),("English"), ("Dutch"),
 ("French"),("German"),("Spanish"),("Portuguese"),("Mexican"),("Polish"),("Russian"),("Brazilian"),("Indian"),
-("Central American"),("South American"),("Irish"),("Scottish"),("Welsh"),("Morrocan"),("Turkish"); 
+("Central American"),("South American"),("Irish"),("Scottish"),("Welsh"),("Morrocan"),("Turkish"),("Not Known"); 
 
 
 INSERT INTO FOOD_TYPE
@@ -89,6 +90,7 @@ VALUES
 ("General"),("Starter"),("Main"),("Salad"),("Dessert");
 
 
+-- Test Chef Inserts
 INSERT INTO CHEF
 (F_NAME, SURNAME)
 VALUES
@@ -105,10 +107,44 @@ VALUES
 ("Salt"),("Sugar"),("Black Pepper"), ("Butter"), ("White Pepper"),("5 Spice"),("Eggs"),("Milk"),("Yeast"),("Flour"),("Baking Soda"),("Cheese"),("Tomatoes"); 
 
 
+-- Test recipes
 INSERT INTO RECIPE
-(NAME, DESCRIPTION, PREP_TIME, DIRECTIONS, IMAGE)
+(NAME, DESCRIPTION, PREP_TIME, DIRECTIONS, IMAGE, INGREDIENTS, CHEF_ID, FOOD_TYPE_ID, FOOD_ORIGIN_ID)
 VALUES
-("Spanish Omellette", 25, "Beat eggs together with ingredients, blah, blah, blah.........", "C:/Users/william/Desktop");
+("Spanish Omellette", "This is a fantastic Spanish dish that has wonderful textures.......", 25, "3 Eggs, 200gs Flour, 200ml milk......", "Beat eggs together with ingredients.........", "C:/Users/william/Desktop", 1, 1, 22), 
+("Spaghetti Bolognese", "A great italian Classic Dish that brings together the best of........", 30, "500g Mince, 200g Spaghetti......", "Boil Pasta, Cut and Fry vegetables, Fry mince..........", "C:/Users/william/Desktop", 2, 3, 11), 
+("Tomato Soup", "A lovely winter warmer that makes..........", 15, "8 Plum Tomatoes, Salt, Pepper, Cream........", "Blitz Tomatoes in a blender, add cream...........", "C:/Users/william/Desktop", 3, 2, 2);
+
+
+
+-- Test Queries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
