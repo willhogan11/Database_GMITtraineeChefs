@@ -1,6 +1,7 @@
 CREATE DATABASE TRAINEECHEFDB;
 USE TRAINEECHEFDB;
 
+
 CREATE TABLE FOOD_ORIGIN
 (
 	ID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT, 
@@ -15,13 +16,18 @@ CREATE TABLE FOOD_TYPE
 );
 
 
-
 CREATE TABLE CHEF
 (
 	ID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT, 
 	F_NAME VARCHAR(20) NOT NULL, 
-	SURNAME VARCHAR(50) NOT NULL, 
-	CURRENT_YEAR INT UNSIGNED NOT NULL 
+	SURNAME VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE INGREDIENTS
+(
+	ID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+	NAME VARCHAR(50) NOT NULL
 );
 
 
@@ -33,27 +39,26 @@ CREATE TABLE RECIPE
 	PREP_TIME INT NOT NULL, 
 	DIRECTIONS MEDIUMTEXT NOT NULL, 
 	IMAGE LONGBLOB, 
-	-- INGREDIENTS VARCHAR(255) NOT NULL  // Need to figure out the best way of doing this
+	INGREDIENTS VARCHAR(255) NOT NULL
 );
 
 
-CREATE TABLE INGREDIENTS
-(
-	ID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-	NAME VARCHAR(50) NOT NULL
-);
 
 
 INSERT INTO FOOD_ORIGIN
 (ORIGIN)
 VALUES
-("Mix")("Italian"),("Chinese"),("Cantonese"),("Japanese"),("Greek"),("Congolese"),("French"),("German"),("Spanish"),("Mexican"),("Polish"),("Russian"),("Brazilian"),("Irish"),("Scotish"),("Welsh"),("Morrocan"),("Turkish"),("Zimbabwean");
+("Mixed"),("Global"),("Eastern European"),("Western European"),("Scandinavian"),
+("North African"),("South African"),("Central African"),("Middle Eastern"),("Asian"),
+("Italian"),("Chinese"),("Cantonese"),("Japanese"),("Greek"),("Indonesian"),("Thai"),("English"), ("Dutch")
+("French"),("German"),("Spanish"),("Portuguese"),("Mexican"),("Polish"),("Russian"),("Brazilian"),("Indian"),
+("Central American"),("South American"),("Irish"),("Scottish"),("Welsh"),("Morrocan"),("Turkish"); 
 
 
 INSERT INTO FOOD_TYPE
 (TYPE_NAME)
 VALUES
-("General"), ("Starter"), ("Main"), ("Dessert");
+("General"),("Starter"),("Main"),("Salad"),("Dessert");
 
 
 INSERT INTO CHEF
