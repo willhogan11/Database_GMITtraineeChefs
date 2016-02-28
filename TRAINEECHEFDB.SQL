@@ -1,3 +1,5 @@
+DROP SCHEMA IF EXISTS TRAINEECHEFDB;
+
 CREATE DATABASE TRAINEECHEFDB;
 USE TRAINEECHEFDB;
 
@@ -52,16 +54,22 @@ CREATE TABLE RECIPE
 CREATE TABLE INGREDIENTS
 (
 	INGRED_ID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-	NAME VARCHAR(50) NOT NULL, 
-	RECIPE_ID INT UNSIGNED NOT NULL, 
-	FOREIGN KEY(RECIPE_ID) REFERENCES RECIPE(RECIPE_ID)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
+	NAME VARCHAR(50) NOT NULL
 );
 
 
-
-
+CREATE TABLE RECIPE_INGREDIENTS
+(
+	RECIPE_ID INT UNSIGNED NOT NULL, 
+	INGRED_ID INT UNSIGNED NOT NULL, 
+	PRIMARY KEY(RECIPE_ID, INGRED_ID), 
+	FOREIGN KEY (RECIPE_ID) REFERENCES RECIPE(RECIPE_ID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE, 
+	FOREIGN KEY (INGRED_ID) REFERENCES INGREDIENTS(INGRED_ID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
 
 
 
@@ -70,7 +78,7 @@ INSERT INTO FOOD_ORIGIN
 VALUES
 ("Mixed"),("Global"),("Eastern European"),("Western European"),("Scandinavian"),
 ("North African"),("South African"),("Central African"),("Middle Eastern"),("Asian"),
-("Italian"),("Chinese"),("Cantonese"),("Japanese"),("Greek"),("Indonesian"),("Thai"),("English"), ("Dutch")
+("Italian"),("Chinese"),("Cantonese"),("Japanese"),("Greek"),("Indonesian"),("Thai"),("English"), ("Dutch"),
 ("French"),("German"),("Spanish"),("Portuguese"),("Mexican"),("Polish"),("Russian"),("Brazilian"),("Indian"),
 ("Central American"),("South American"),("Irish"),("Scottish"),("Welsh"),("Morrocan"),("Turkish"); 
 
@@ -82,13 +90,13 @@ VALUES
 
 
 INSERT INTO CHEF
-(F_NAME, SURNAME, CURRENT_YEAR)
+(F_NAME, SURNAME)
 VALUES
-("Will", "Hogan", 3),
-("Mike", "Kelly", 1),
-("John", "Rabbitte", 2),
-("Gerry", "Mahony", 4),
-("Michelle", "Doherty", 3);
+("Will", "Hogan"),
+("Mike", "Kelly"),
+("John", "Rabbitte"),
+("Gerry", "Mahony"),
+("Michelle", "Doherty");
 
 
 INSERT INTO INGREDIENTS
